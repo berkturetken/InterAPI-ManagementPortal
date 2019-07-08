@@ -1,0 +1,53 @@
+﻿@using InterAPI_Project.Models.EntityFramework
+
+@model List<User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+<div style="margin-left:10%; padding-top: 50px;">
+
+    <h2> ALL USERS </h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th> ID </th>
+                <th> Username </th>
+                <th> Password </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var users in Model)
+            {
+                <tr>
+                    <td> @users.Id  </td>
+                    <td> @users.Username </td>
+                    <td> @users.Password </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+    <p> empty </p>
+
+
+</div>

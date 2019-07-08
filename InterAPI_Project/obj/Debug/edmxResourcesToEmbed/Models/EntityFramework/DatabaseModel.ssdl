@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APIDashboardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="AppKey" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="ApplicationMethodPermission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationId" Type="int" Nullable="false" />
+    <Property Name="MethodId" Type="int" Nullable="false" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Method">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="MethodLog">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationId" Type="int" Nullable="false" />
+    <Property Name="RequestTime" Type="datetime" Nullable="false" />
+    <Property Name="ResponseTime" Type="datetime" Nullable="false" />
+    <Property Name="Request" Type="varchar(max)" Nullable="false" />
+    <Property Name="Response" Type="varchar(max)" Nullable="false" />
+    <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="HttpStatus" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Applicati__Metho__2D27B809">
+    <End Role="Method" Type="Self.Method" Multiplicity="1" />
+    <End Role="ApplicationMethodPermission" Type="Self.ApplicationMethodPermission" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Method">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ApplicationMethodPermission">
+        <PropertyRef Name="MethodId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="APIDashboardModelStoreContainer">
+    <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationMethodPermission" EntityType="Self.ApplicationMethodPermission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Method" EntityType="Self.Method" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MethodLog" EntityType="Self.MethodLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Applicati__Metho__2D27B809" Association="Self.FK__Applicati__Metho__2D27B809">
+      <End Role="Method" EntitySet="Method" />
+      <End Role="ApplicationMethodPermission" EntitySet="ApplicationMethodPermission" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

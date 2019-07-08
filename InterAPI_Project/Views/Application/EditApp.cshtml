@@ -1,0 +1,30 @@
+﻿@model InterAPI_Project.Models.EntityFramework.Application
+
+@{
+    ViewBag.Title = "AddMethod";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("Save", "Application", FormMethod.Post))
+{
+
+    <div class="form-group" style="margin-left:35%; padding:10px 50px;">
+
+        @Html.LabelFor(m => m.AppKey)
+        @Html.TextBoxFor(m => m.AppKey, new { disabled="disabled", @class = "form-control", @Value = Model.AppKey })
+        @Html.HiddenFor(m => m.AppKey)
+
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+
+        @Html.HiddenFor(m => m.UserId)
+        @Html.HiddenFor(m => m.CreateTime)
+
+        <br />
+        @Html.HiddenFor(m => m.Id)
+        <button type="submit" class="btn btn-success"> Save </button>
+    </div>
+
+}

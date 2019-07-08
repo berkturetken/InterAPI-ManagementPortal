@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="APIDashboardModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AppKey" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="ApplicationMethodPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="MethodId" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Method">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="MethodLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ApplicationId" Type="int" Nullable="false" />
+          <Property Name="RequestTime" Type="datetime" Nullable="false" />
+          <Property Name="ResponseTime" Type="datetime" Nullable="false" />
+          <Property Name="Request" Type="varchar(max)" Nullable="false" />
+          <Property Name="Response" Type="varchar(max)" Nullable="false" />
+          <Property Name="MethodName" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="HttpStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Surname" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Applicati__Metho__2D27B809">
+          <End Role="Method" Type="Self.Method" Multiplicity="1" />
+          <End Role="ApplicationMethodPermission" Type="Self.ApplicationMethodPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Method">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationMethodPermission">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="APIDashboardModelStoreContainer">
+          <EntitySet Name="Application" EntityType="Self.Application" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApplicationMethodPermission" EntityType="Self.ApplicationMethodPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Method" EntityType="Self.Method" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MethodLog" EntityType="Self.MethodLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Applicati__Metho__2D27B809" Association="Self.FK__Applicati__Metho__2D27B809">
+            <End Role="Method" EntitySet="Method" />
+            <End Role="ApplicationMethodPermission" EntitySet="ApplicationMethodPermission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="APIDashboardModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Application">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AppKey" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="APIDashboardEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Applications" EntityType="Self.Application" />
+          <EntitySet Name="Users" EntityType="APIDashboardModel.User" />
+          <EntitySet Name="MethodLogs" EntityType="APIDashboardModel.MethodLog" />
+          <EntitySet Name="ApplicationMethodPermissions" EntityType="APIDashboardModel.ApplicationMethodPermission" />
+          <EntitySet Name="Methods" EntityType="APIDashboardModel.Method" />
+          <AssociationSet Name="FK__Applicati__Metho__2D27B809" Association="APIDashboardModel.FK__Applicati__Metho__2D27B809">
+            <End Role="Method" EntitySet="Methods" />
+            <End Role="ApplicationMethodPermission" EntitySet="ApplicationMethodPermissions" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Surname" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="MethodLog">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="RequestTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResponseTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Request" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Response" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="MethodName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="HttpStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApplicationMethodPermission">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ApplicationId" Type="Int32" Nullable="false" />
+          <Property Name="MethodId" Type="Int32" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Method" Relationship="APIDashboardModel.FK__Applicati__Metho__2D27B809" FromRole="ApplicationMethodPermission" ToRole="Method" />
+        </EntityType>
+        <EntityType Name="Method">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ApplicationMethodPermissions" Relationship="APIDashboardModel.FK__Applicati__Metho__2D27B809" FromRole="Method" ToRole="ApplicationMethodPermission" />
+        </EntityType>
+        <Association Name="FK__Applicati__Metho__2D27B809">
+          <End Type="APIDashboardModel.Method" Role="Method" Multiplicity="1" />
+          <End Type="APIDashboardModel.ApplicationMethodPermission" Role="ApplicationMethodPermission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Method">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ApplicationMethodPermission">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="APIDashboardModelStoreContainer" CdmEntityContainer="APIDashboardEntities">
+          <EntitySetMapping Name="Applications">
+            <EntityTypeMapping TypeName="APIDashboardModel.Application">
+              <MappingFragment StoreEntitySet="Application">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="AppKey" ColumnName="AppKey" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="APIDashboardModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MethodLogs">
+            <EntityTypeMapping TypeName="APIDashboardModel.MethodLog">
+              <MappingFragment StoreEntitySet="MethodLog">
+                <ScalarProperty Name="HttpStatus" ColumnName="HttpStatus" />
+                <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+                <ScalarProperty Name="Response" ColumnName="Response" />
+                <ScalarProperty Name="Request" ColumnName="Request" />
+                <ScalarProperty Name="ResponseTime" ColumnName="ResponseTime" />
+                <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApplicationMethodPermissions">
+            <EntityTypeMapping TypeName="APIDashboardModel.ApplicationMethodPermission">
+              <MappingFragment StoreEntitySet="ApplicationMethodPermission">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Methods">
+            <EntityTypeMapping TypeName="APIDashboardModel.Method">
+              <MappingFragment StoreEntitySet="Method">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

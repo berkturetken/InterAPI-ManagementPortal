@@ -1,0 +1,74 @@
+﻿@model InterAPI_Project.ViewModels.MethodPermissionViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div style="margin-left:35%; padding:10px 50px;">
+    <h2> Raporlama Sayfası </h2>
+</div>
+
+
+@using (Html.BeginForm("ListLogs", "Report", FormMethod.Post))
+{
+<div style="margin-left:10%; padding-top: 50px;">
+
+    <h5> Please, select your application and method to be reported </h5>
+    <br />
+
+
+
+    <h6> Application: </h6>
+    @Html.DropDownListFor(m => m.ApplicationId, new SelectList(Model.Applications, "Id", "Name"), new { @class = "form-control" })
+
+
+    @*@Html.HiddenFor(m => m.ApplicationId)*@
+
+    <br />
+
+    <h6> Method: </h6>
+    @Html.DropDownListFor(m => m.MethodId, new SelectList(Model.Methods, "Id", "Name"), new { @class = "form-control" })
+
+    <br />
+
+    <div style="margin-left:35%; padding:5px 580px;">
+        <button type="submit" class="btn btn-info"> Listele </button>
+    </div>
+</div>
+}
+
+*<div style="margin-left:10%; padding-top: 1px;">
+
+    <h2> RAPOR </h2>
+
+    <table class="table table-bordered" style="width:auto;">
+        <thead>
+
+            <tr>
+                <th> Request Time </th>
+                <th> Response Time </th>
+                <th> Method Name </th>
+                <th> Http Status </th>
+                <th> Detail </th>
+            </tr>
+        </thead>
+
+        @if (Model.MethodLogs != null)
+        {
+            <tbody>
+                @foreach (var item in Model.MethodLogs)
+                {
+                    <tr>
+                        <td> @item.RequestTime </td>
+                        <td> @item.ResponseTime </td>
+                        <td> @item.MethodName </td>
+                        <td> @item.HttpStatus </td>
+                        <td> <a class="btn btn-dark" href="/Report/Detail/@item.Id"> Detail </a> </td>
+                    </tr>
+                }
+            </tbody>
+        }
+
+    </table>
+</div>

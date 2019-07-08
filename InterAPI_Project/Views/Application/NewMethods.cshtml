@@ -1,0 +1,44 @@
+﻿@model InterAPI_Project.ViewModels.MethodPermissionViewModel
+
+
+@{
+    ViewBag.Title = "AddMethods";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm("AddMethods", "Application", FormMethod.Post))
+{
+<div style="margin-left:35%; padding:100px 50px;">
+
+    <h2> Choose Method to Add Your Application </h2>
+    @*<p>Click on the button to open the dropdown menu.</p>*@
+
+    @*<button onclick="myFunction()" class="dropbtn">Dropdown</button>*@
+
+    @Html.DropDownListFor(m => m.MethodId, new SelectList(Model.Methods, "Id", "Name"), new { @class = "form-control" })
+
+    @Html.HiddenFor(m => m.ApplicationId)
+    <br />
+    <button type="submit" class="btn btn-info"> Add </button>
+</div>
+}
+
+<div style="margin-left:35%; padding:100px 50px;">
+
+    @*<h2> Your Methods </h2>
+    @foreach (var yourMethods in Model.Methods)
+    {
+        
+    }
+    <br />*@
+
+    @*<h2> All Methods </h2>
+    @foreach (var item in Model.Methods)
+    {
+        <p> @item.Name    @item.Id</p>
+    }*@
+
+
+</div>

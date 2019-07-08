@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="APIDashboardModelStoreContainer" CdmEntityContainer="APIDashboardEntities">
+    <EntitySetMapping Name="Applications">
+      <EntityTypeMapping TypeName="APIDashboardModel.Application">
+        <MappingFragment StoreEntitySet="Application">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="AppKey" ColumnName="AppKey" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="APIDashboardModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MethodLogs">
+      <EntityTypeMapping TypeName="APIDashboardModel.MethodLog">
+        <MappingFragment StoreEntitySet="MethodLog">
+          <ScalarProperty Name="HttpStatus" ColumnName="HttpStatus" />
+          <ScalarProperty Name="MethodName" ColumnName="MethodName" />
+          <ScalarProperty Name="Response" ColumnName="Response" />
+          <ScalarProperty Name="Request" ColumnName="Request" />
+          <ScalarProperty Name="ResponseTime" ColumnName="ResponseTime" />
+          <ScalarProperty Name="RequestTime" ColumnName="RequestTime" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationMethodPermissions">
+      <EntityTypeMapping TypeName="APIDashboardModel.ApplicationMethodPermission">
+        <MappingFragment StoreEntitySet="ApplicationMethodPermission">
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+          <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+          <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Methods">
+      <EntityTypeMapping TypeName="APIDashboardModel.Method">
+        <MappingFragment StoreEntitySet="Method">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

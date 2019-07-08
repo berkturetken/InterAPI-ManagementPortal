@@ -1,0 +1,49 @@
+﻿@using InterAPI_Project.Models.EntityFramework
+
+@model List<Application>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin-left:35%; padding:10px 50px;">
+    <h2> Uygulamalar Sayfası </h2>
+</div>
+
+<div style="margin-left:10%; padding-top: 50px;">
+
+    <a class="btn btn-success" href="/Application/AddApp" style="margin-left:86%"> Add Application </a>
+    <h2> YOUR APPLICATIONS </h2>
+
+    <table class="table table-bordered">
+        <thead>
+        <thead>
+            <tr>
+                <th> Name </th>
+                <th> App Key </th>
+                <th> Create Time </th>
+                <th> Edit </th>
+                <th> Add Methods </th>
+                <th> Detail </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var applications in Model)
+            {
+                <tr>
+                    <td> @applications.Name </td>
+                    <td> @applications.AppKey </td>
+                    <td> @applications.CreateTime </td>
+                    <td> <a class="btn btn-info" href="/Application/UpdateApp/@applications.Id"> Edit </a></td>
+                    <td> <a class="btn btn-dark" href="/Application/NewMethods/@applications.Id"> Add Methods </a></td>
+                    <td> <a class="btn btn-dark" href="/Application/ViewMethods/@applications.Id"> Detail </a></td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+

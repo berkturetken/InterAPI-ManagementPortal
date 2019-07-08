@@ -1,0 +1,39 @@
+﻿@using InterAPI_Project.Models.EntityFramework
+
+@model List<ApplicationMethodPermission>
+
+@{
+    ViewBag.Title = "ViewMethods";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div style="margin-left:15%; padding-top: 80px;">
+
+    <h2> YOUR METHODS </h2>
+
+    <table class="table table-bordered">
+        <thead>
+        <thead>
+            <tr>
+                <th> Method Name </th>
+                <th> Create Time </th>
+            </tr>
+        </thead>
+        
+        <tbody>
+            @foreach (var methods in Model)
+            {
+                <tr>
+                    <td> @methods.Method.Name </td>
+                    <td> @methods.CreateTime </td>
+
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+
