@@ -13,9 +13,9 @@ and monitor their existing membership information(3).
 - View details of transactions
 
 Technologies
-Web Application Framework: ASP.NET MVC
-Software Application for Database: Microsoft SQL Server
-Integrated Development Environment (IDE): Microsoft Visual Studio 2017
-Languages: HTML, CSS, JavaScript, C#
-Third Party Frameworks: CodeMirror, Bootstrap, Newtonsoft
+- Web Application Framework: ASP.NET MVC
+- Software Application for Database: Microsoft SQL Server
+- Integrated Development Environment (IDE): Microsoft Visual Studio 2017
+- Languages: HTML, CSS, JavaScript, C#
+- Third Party Frameworks: CodeMirror, Bootstrap, Newtonsoft
 
