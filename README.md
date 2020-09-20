@@ -1,4 +1,4 @@
-# interAPI_Project
+# interAPI Management Portal
 
 In this project, I create an API management portal where users of the Inter-API can manage their applications(1), manage their reports(2),
 and monitor their existing membership information(3).
